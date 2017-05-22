@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+	<!-- ************************************************ -->
+	<!-- * Fichier de configuration du Framework STRUTS * -->
+	<!-- ************************************************ -->
+
+	<include file="config-browser.xml"/>
+	
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="bootstrap"></constant>
+
+	<package name="approCantine" namespace="/"  extends="struts-default">
+
+		<!-- Action générique ou dynamique -->
+		<!-- 1er paramètre indique le chemin du package -->
+		<!-- 2ème paramètre indique la class elle-même -->
+		<!-- 3ème paramètre indique la méthode à lancer -->
+		<!-- Un succès redirige vers une page comportant le nom de la class -->
+		<!-- Un echec redirige vers une page comportant le nom de la class suffixée 
+			par '-error' -->
+		<!-- Toutes les combinaisons sont donc possibles -->
+		<action name="*.*.*" class="fr.fiegel.{1}.{2}"
+			method="{3}">
+			<result name="SUCCESS">/JSP/{2}.jsp</result>
+			<result name="ERROR">/JSP/{2}-error.jsp</result>
+			<result>/JSP/{2}.jsp</result>
+			<!-- result pour connect -->
+			<result name="CO-SUCCESS">/JSP/Accueil.jsp</result>
+			<result name="CO-MANAGER">/JSP/AccueilManager.jsp</result>
+			<result name="CO-ERROR">/JSP/Login-error.jsp</result>
+			<result name="TO-LOGIN">Login.jsp</result>
+		</action>
+
+		<!-- Permet un retour 'static' vers la page principal -->
+		<!-- <action name="backLogin" class="fr.iutbank.controller.Connect"
+			method="backLogin">
+			<result name="SUCCESS">Login.jsp</result>
+			<result name="ERROR">/JSP/Login-error.jsp</result>
+			<result>Login.jsp</result>
+		</action> -->
+		
+		<action name="verifLogin" class="fr.fiegel.controller.Connect"
+			method="login">
+			<result name="CO-SUCCESS">Login.jsp</result>
+			<result name="CO-ERROR">/jsp/Login-error.jsp</result>
+			<result name="FAILED">/jsp/Failed.jsp</result>
+			<result>Login.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>

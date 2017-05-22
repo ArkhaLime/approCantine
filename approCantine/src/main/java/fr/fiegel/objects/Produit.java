@@ -1,6 +1,6 @@
 package fr.fiegel.objects;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Produit {
 
@@ -11,14 +11,14 @@ public class Produit {
 	protected String reference;
 	protected double prix_achat;
 	protected int min_rupture;
-	protected Calendar date_peremption;
+	protected LocalDate date_peremption;
 
 	
 	public Produit(){
-		this.date_peremption=Calendar.getInstance();
+		this.date_peremption=LocalDate.now();
 	}
 	
-	public Produit(int ident, String libelle, String marque, String conditionnement, String ref, double prix_achat, int rupture, Calendar peremption){
+	public Produit(int ident, String libelle, String marque, String conditionnement, String ref, double prix_achat, int rupture, LocalDate peremption){
 		this.ident=ident;
 		this.libelle=libelle;
 		this.marque=marque;
@@ -69,27 +69,27 @@ public class Produit {
 		this.reference = reference;
 	}
 
-	public double getPrix_achat() {
+	public double getPrixAchat() {
 		return prix_achat;
 	}
 
-	public void setPrix_achat(double prix_achat) {
+	public void setPrixAchat(double prix_achat) {
 		this.prix_achat = prix_achat;
 	}
 
-	public int getMin_rupture() {
+	public int getMinRupture() {
 		return min_rupture;
 	}
 
-	public void setMin_rupture(int min_rupture) {
+	public void setMinRupture(int min_rupture) {
 		this.min_rupture = min_rupture;
 	}
 
-	public Calendar getDate_peremption() {
+	public LocalDate getDatePeremption() {
 		return date_peremption;
 	}
 
-	public void setDate_peremption(Calendar date_peremption) {
+	public void setDatePeremption(LocalDate date_peremption) {
 		this.date_peremption = date_peremption;
 	}
 

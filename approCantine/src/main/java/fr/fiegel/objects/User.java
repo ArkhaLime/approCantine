@@ -3,19 +3,20 @@ package fr.fiegel.objects;
 public class User {
 
 	protected int ident;
-	protected String name;
-	protected String forname;
+	protected String nom;
+	protected String prenom;
 	protected String email;
-	protected String password;
-	
-	public User(){}
-	
-	public User(int ident,String name, String forname,String email, String password){
-		this.ident=ident;
-		this.name=name;
-		this.forname=forname;
-		this.email=email;
-		this.password=password;
+	protected String mdp;
+
+	public User() {
+	}
+
+	public User(int ident, String nom, String prenom, String email, String mdp) {
+		this.ident = ident;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.mdp = mdp;
 	}
 
 	public int getIdent() {
@@ -26,20 +27,20 @@ public class User {
 		this.ident = ident;
 	}
 
-	public String getName() {
-		return name;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public String getForname() {
-		return forname;
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public void setForname(String forname) {
-		this.forname = forname;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	public String getEmail() {
@@ -50,17 +51,21 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMdp() {
+		return mdp;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+	public String getIdentite() {
+		return prenom + " " + nom;
 	}
 
 	@Override
 	public String toString() {
-		return "User [ident=" + ident + ", name=" + name + ", forname=" + forname + ", email=" + email + "]";
+		return "User [ident=" + ident + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + "]";
 	}
-	
+
 }

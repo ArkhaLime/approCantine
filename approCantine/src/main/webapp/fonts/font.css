@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'BarcodeFont';
+  src: url('BarcodeFont.eot');
+  src: url('BarcodeFont.woff2') format('woff2'),
+       url('BarcodeFont.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'barcodefont';
+  src: url('barcodefont.woff') format('woff'),
+       url('barcodefont.svg#barcodefont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+

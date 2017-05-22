@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'BarcodeFont';
+
+  src: url('../fonts/BarcodeFont.eot');
+  src: url('../fonts/BarcodeFont.eot?#iefix') format('embedded-opentype'), 
+  url('../fonts/BarcodeFont.woff2') format('woff2'), 
+  url('../fonts/barcodefont.woff') format('woff'), 
+  url('../fonts/BarcodeFont.ttf') format('truetype'), 
+  url('../fonts/barcodefont.svg#barcodefont') format('svg');
+}
+.barcode {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'BarcodeFont';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+ 
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 350px;
+}
+
+.glyphicon{
+	margin-left:0.4em;
+	margin-right:0.4em;
+}]
