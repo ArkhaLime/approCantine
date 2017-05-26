@@ -28,7 +28,7 @@ public class ProduitDAO extends AbstractDAO<Produit> {
 		String requete = "INSERT INTO Produit(" + COLONNE_LIBELLE + "," + COLONNE_MARQUE + "," + COLONNE_CONDITIONNEMENT
 				+ "," + COLONNE_REFERENCE + "," + COLONNE_PRIX + "," + COLONNE_RUPTURE + "," + COLONNE_PEREMPTION + ") "
 				+ " VALUES " + "('" + produit.getLibelle() + "','" + produit.getMarque() + "','"
-				+ produit.getContionnement() + "','" + produit.getReference() + "','" + produit.getPrixAchat() + "','"
+				+ produit.getConditionnement() + "','" + produit.getReference() + "','" + produit.getPrixAchat() + "','"
 				+ produit.getMinRupture() + "','" + produit.getDatePeremption().toString() + "');";
 		try {
 			Statement stmt = connexion.createStatement();
@@ -47,7 +47,7 @@ public class ProduitDAO extends AbstractDAO<Produit> {
 
 	public void updateProduit(Produit produit) throws SQLException {
 		String requete = "UPDATE Produit SET " + COLONNE_LIBELLE + "= '" + produit.getLibelle() + "', " + COLONNE_MARQUE
-				+ "='" + produit.getMarque() + "', " + COLONNE_CONDITIONNEMENT + "='" + produit.getContionnement()
+				+ "='" + produit.getMarque() + "', " + COLONNE_CONDITIONNEMENT + "='" + produit.getConditionnement()
 				+ "', " + COLONNE_REFERENCE + "='" + produit.getReference() + "', " + COLONNE_PRIX + "='"
 				+ produit.getPrixAchat() + "', " + COLONNE_RUPTURE + "='" + produit.getMinRupture() + "', "
 				+ COLONNE_PEREMPTION + "='" + produit.getDatePeremption().toString() + "' WHERE " + COLONNE_IDENT + "="

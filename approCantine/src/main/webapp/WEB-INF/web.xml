@@ -25,6 +25,11 @@
 		<servlet-class>fr.fiegel.web.servlet.ListeProduitsServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>DetailProduitServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.DetailProduitServlet</servlet-class>
+	</servlet>
+	
 	
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -39,6 +44,11 @@
 	<servlet-mapping>
 		<servlet-name>ListeProduitsServlet</servlet-name>
 		<url-pattern>/listeProduit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DetailProduitServlet</servlet-name>
+		<url-pattern>/detail</url-pattern>
 	</servlet-mapping>
 
 </web-app>

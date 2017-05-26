@@ -2,6 +2,8 @@ package fr.fiegel.objects;
 
 import java.time.LocalDate;
 
+import fr.fiegel.utils.CalUtils;
+
 public class Produit {
 
 	protected int ident;
@@ -87,6 +89,10 @@ public class Produit {
 
 	public LocalDate getDatePeremption() {
 		return date_peremption;
+	}
+	
+	public String getFrDatePeremption(){
+		return CalUtils.toDMYString(this.date_peremption);
 	}
 
 	public void setDatePeremption(LocalDate date_peremption) {

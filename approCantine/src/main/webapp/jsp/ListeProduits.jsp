@@ -17,7 +17,7 @@
 				<p class="block barcode text-center margin-top-10px" style="font-size:4em;" ><c:out value="${produit.reference }"></c:out></p>
 				<p class="text-center" ><c:out value="${produit.libelle}"/><br/>(<c:out value="${produit.conditionnement}"/>)</p>
 				<form action="detail" method="get">
-					<input type="hidden" value="<c:out value='${produit.ident }'/>" />
+					<input type="hidden" name="ident" value="<c:out value='${produit.ident }'/>" />
 					<button class="btn btn-primary center-block" type="submit" >Voir détails</button>
 				</form>
 			</div>

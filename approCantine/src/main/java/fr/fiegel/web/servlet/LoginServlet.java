@@ -25,7 +25,10 @@ public class LoginServlet extends HttpServlet {
 			UserDAO dao = new UserDAO();
 			User user = dao.connect(req.getParameter("login"), req.getParameter("password"));
 			dao.closeConnection();
-			if(user==null) resp.sendRedirect("jsp/Login-error.jsp");
+			if(user==null){
+				resp.sendRedirect("jsp/Login-error.jsp");
+				return;
+			}
 			req.getSession().setAttribute("userCo", user);
 			req.getRequestDispatcher("listeProduit").forward(req, resp);
 		} catch (SQLException e) {
