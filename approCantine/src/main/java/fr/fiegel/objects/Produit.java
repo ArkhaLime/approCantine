@@ -53,12 +53,12 @@ public class Produit {
 		this.marque = marque;
 	}
 
-	public String getContionnement() {
+	public String getConditionnement() {
 		return conditionnement;
 	}
 
-	public void setContionnement(String contionnement) {
-		this.conditionnement = contionnement;
+	public void setConditionnement(String conditionnement) {
+		this.conditionnement = conditionnement;
 	}
 
 	public String getReference() {

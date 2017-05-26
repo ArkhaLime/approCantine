@@ -18,6 +18,7 @@
 		<mysql.driver.version>6.0.6</mysql.driver.version>
 		<struts2.core.version>2.5.10.1</struts2.core.version>
 		<struts2.bootstrap.version>2.5.1</struts2.bootstrap.version>
+		<jstl.version>1.2.4</jstl.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<running.mode>PROD</running.mode>
@@ -76,7 +77,7 @@
 			</dependency>
 
 			<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
-			<dependency>
+			<!-- <dependency>
 				<groupId>org.apache.struts</groupId>
 				<artifactId>struts2-core</artifactId>
 				<version>${struts2.core.version}</version>
@@ -86,6 +87,12 @@
 				<groupId>com.jgeppert.struts2.bootstrap</groupId>
 				<artifactId>struts2-bootstrap-plugin</artifactId>
 				<version>${struts2.bootstrap.version}</version>
+			</dependency> -->
+
+			<dependency>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.servlet.jsp.jstl</artifactId>
+				<version>${jstl.version}</version>
 			</dependency>
 
 		</dependencies>
@@ -139,7 +146,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
 		</dependency>
@@ -147,6 +154,11 @@
 		<dependency>
 			<groupId>com.jgeppert.struts2.bootstrap</groupId>
 			<artifactId>struts2-bootstrap-plugin</artifactId>
+		</dependency> -->
+		
+		<dependency>
+		    <groupId>org.glassfish.web</groupId>
+		    <artifactId>javax.servlet.jsp.jstl</artifactId>
 		</dependency>
 
 	</dependencies>

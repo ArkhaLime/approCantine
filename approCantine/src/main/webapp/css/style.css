@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'BarcodeFont';
 
-  src: url('../fonts/BarcodeFont.eot');
-  src: url('../fonts/BarcodeFont.eot?#iefix') format('embedded-opentype'), 
-  url('../fonts/BarcodeFont.woff2') format('woff2'), 
-  url('../fonts/barcodefont.woff') format('woff'), 
-  url('../fonts/BarcodeFont.ttf') format('truetype'), 
-  url('../fonts/barcodefont.svg#barcodefont') format('svg');
+  src: url('../fonts/barcode/BarcodeFont.eot');
+  src: url('../fonts/barcode/BarcodeFont.eot?#iefix') format('embedded-opentype'), 
+  url('../fonts/barcode/BarcodeFont.woff2') format('woff2'), 
+  url('../fonts/barcode/barcodefont.woff') format('woff'), 
+  url('../fonts/barcode/BarcodeFont.ttf') format('truetype'), 
+  url('../fonts/barcode/barcodefont.svg#barcodefont') format('svg');
 }
 .barcode {
   position: relative;
@@ -49,4 +49,26 @@ textarea {
 .glyphicon{
 	margin-left:0.4em;
 	margin-right:0.4em;
-}]
+}
+
+.block{
+	display:block;
+}
+
+.img-produit{
+	/*max-height: 200px;
+	max-width: 200px;*/
+	max-width: 100%;
+	max-height: 200px;
+}
+
+.fiche-produit{
+	padding-top:15px;
+	padding-bottom:15px;
+	background-color: #efefef;
+	border: white 10px solid;
+}
+
+.margin-top-10px{
+	margin-top: 10px;
+}

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.fiegel.objects.User;
+import fr.fiegel.utils.StrUtils;
 
 public class UserDAO extends AbstractDAO<User> {
 
@@ -21,10 +22,12 @@ public class UserDAO extends AbstractDAO<User> {
 	}
 
 	public User connect(String email, String mdp) throws SQLException {
+		System.out.println("UserDao.connect('"+email+"','"+mdp+"')");
 		String requete = "SELECT " + COLONNE_IDENT + "," + COLONNE_NOM + "," + COLONNE_PRENOM + "," + COLONNE_EMAIL
 				+ "," + COLONNE_MDP + " FROM User WHERE " + COLONNE_EMAIL + "='" + email + "' AND " + COLONNE_MDP + " = '"
 				+ mdp+"'";
-		if(email.trim().equals("") || mdp.trim().equals("")) return null;
+		//if(email.trim().equals("") || mdp.trim().equals("")) return null;
+		if(StrUtils.isNullOrEmpty(email) || StrUtils.isNullOrEmpty(mdp)) return null;
 		try {
 			Statement stmt = connexion.createStatement();
 			ResultSet result = stmt.executeQuery(requete);

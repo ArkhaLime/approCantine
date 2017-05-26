@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Bootstrap -->
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-    <sb:head includeScripts="false" includeScriptsValidation="false"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"> 
     <link rel="stylesheet" href="css/style.css" type="text/css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

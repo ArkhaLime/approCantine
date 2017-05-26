@@ -4,15 +4,17 @@
 <html>
   <head>
     <jsp:include page="./includes/Head.jsp"></jsp:include>
-    <title>Bootstrap 101 Template</title>
+    <title>Erreur</title>
   </head>
   <body>
   <jsp:include page="./includes/Navbar.jsp"></jsp:include>
-  <div class="container">
-	<h1>Hello, world!</h1>
+  <div class="container body-content">
+	<h1>Une erreur est survenue!</h1>
+	<p>
+		Voici l'erreur: <strong><c:out value="${exception.message}"></c:out></strong>.<br/>
+		Veuillez contacter l'administrateur de ce site.
+	</p>
   </div>
-    
-
     <jsp:include page="./includes/Scripts.jsp"></jsp:include>
   </body>
 </html>
