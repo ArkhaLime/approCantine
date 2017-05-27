@@ -95,7 +95,33 @@ public class ProduitDAO extends AbstractDAO<Produit> {
 	public List<Produit> rechercherProduit(boolean orderbyAsc) throws SQLException {
 		String requete = "SELECT " + COLONNE_IDENT + "," + COLONNE_LIBELLE + "," + COLONNE_MARQUE + ","
 				+ COLONNE_CONDITIONNEMENT + "," + COLONNE_REFERENCE + "," + COLONNE_PRIX + "," + COLONNE_RUPTURE + ","
-				+ COLONNE_PEREMPTION + "," + COLONNE_QUANTITE + " FROM Produit ORDER BY " + COLONNE_IDENT;
+				+ COLONNE_PEREMPTION + "," + COLONNE_QUANTITE + " FROM Produit ORDER BY " + COLONNE_PEREMPTION;
+		if (orderbyAsc) {
+			requete += " ASC";
+		} else {
+			requete += " DESC";
+		}
+		// System.out.println(requete);
+		try {
+			Statement stmt = connexion.createStatement();
+			ResultSet result = stmt.executeQuery(requete);
+			List<Produit> liste = new ArrayList<>();
+			while (result.next()) {
+				liste.add(fromResultSet(result));
+			}
+			return liste;
+		} catch (SQLException e) {
+			System.out.println("ProduitDAO#rechercherProduit");
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public List<Produit> rechercherProduit(boolean orderbyAsc, String champ, String valeurChamp) throws SQLException {
+		String requete = "SELECT " + COLONNE_IDENT + "," + COLONNE_LIBELLE + "," + COLONNE_MARQUE + ","
+				+ COLONNE_CONDITIONNEMENT + "," + COLONNE_REFERENCE + "," + COLONNE_PRIX + "," + COLONNE_RUPTURE + ","
+				+ COLONNE_PEREMPTION + "," + COLONNE_QUANTITE + " FROM Produit where " + champ + " like '%"
+				+ valeurChamp + "%' ORDER BY " + COLONNE_PEREMPTION;
 		if (orderbyAsc) {
 			requete += " ASC";
 		} else {
@@ -121,7 +147,8 @@ public class ProduitDAO extends AbstractDAO<Produit> {
 		String requete = "SELECT " + COLONNE_IDENT + "," + COLONNE_LIBELLE + "," + COLONNE_MARQUE + ","
 				+ COLONNE_CONDITIONNEMENT + "," + COLONNE_REFERENCE + "," + COLONNE_PRIX + "," + COLONNE_RUPTURE + ","
 				+ COLONNE_PEREMPTION + "," + COLONNE_QUANTITE + ",(" + COLONNE_QUANTITE + "-" + COLONNE_RUPTURE
-				+ ") rupture FROM Produit where ("+COLONNE_QUANTITE+"<="+COLONNE_RUPTURE+"*"+ coefRupture +") ORDER BY rupture";
+				+ ") rupture FROM Produit where (" + COLONNE_QUANTITE + "<=" + COLONNE_RUPTURE + "*" + coefRupture
+				+ ") ORDER BY rupture";
 		if (orderbyAsc) {
 			requete += " ASC";
 		} else {

@@ -1,6 +1,7 @@
 package fr.fiegel.web.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ import fr.fiegel.utils.StrUtils;
 import fr.fiegel.utils.Utils;
 
 @SuppressWarnings("serial")
-public class DetailProduitServlet extends HttpServlet {
+public class RechercheProduitServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,22 +26,20 @@ public class DetailProduitServlet extends HttpServlet {
 				return;
 			}
 			
-			String ident = req.getParameter("ident");
-			Produit produit=null;
-			if(!StrUtils.isNullOrEmpty(ident)){
-				ProduitDAO dao = new ProduitDAO();
-				produit = dao.getProduitByIdent(Integer.parseInt(ident));
-				dao.closeConnection();
-			}else{
-				produit = new Produit();
-			}
-			
-			/*if(produit==null){
-				resp.sendRedirect("listeProduit");
+			String ident = req.getParameter("champ");
+			String valeur = req.getParameter("valeur");
+			String desc = req.getParameter("desc");
+			boolean asc =StrUtils.isNullOrEmpty(desc);
+			if(StrUtils.isNullOrEmpty(ident) || StrUtils.isNullOrEmpty(valeur)){
+				resp.sendRedirect("listeProduits");
 				return;
-			}*/
-			req.setAttribute("produit", produit);
-			req.getRequestDispatcher("jsp/DetailProduit.jsp").forward(req, resp);
+			}
+			ProduitDAO dao = new ProduitDAO();
+			ArrayList<Produit> produits = new ArrayList<Produit>(dao.rechercherProduit(asc, ident, valeur));
+			dao.closeConnection();
+			req.setAttribute("recherche", true);
+			req.setAttribute("produits", produits);
+			req.getRequestDispatcher("jsp/ListeProduits.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,5 +47,5 @@ public class DetailProduitServlet extends HttpServlet {
 			req.getRequestDispatcher("jsp/Exception.jsp").forward(req, resp);
 		}
 	}
-
+	
 }

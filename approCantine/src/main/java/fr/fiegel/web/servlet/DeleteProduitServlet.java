@@ -14,33 +14,29 @@ import fr.fiegel.utils.StrUtils;
 import fr.fiegel.utils.Utils;
 
 @SuppressWarnings("serial")
-public class DetailProduitServlet extends HttpServlet {
+public class DeleteProduitServlet extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			HttpSession session = req.getSession();
 			if(session.getAttribute(Utils.USER_CO) == null){
 				resp.sendRedirect("login");
 				return;
 			}
-			
+			ProduitDAO dao = new ProduitDAO();
 			String ident = req.getParameter("ident");
-			Produit produit=null;
-			if(!StrUtils.isNullOrEmpty(ident)){
-				ProduitDAO dao = new ProduitDAO();
-				produit = dao.getProduitByIdent(Integer.parseInt(ident));
-				dao.closeConnection();
-			}else{
-				produit = new Produit();
+			if(StrUtils.isNullOrEmpty(ident)){
+				throw new IllegalArgumentException("L'identifiant du produit ne peut être null");
 			}
-			
-			/*if(produit==null){
-				resp.sendRedirect("listeProduit");
-				return;
-			}*/
-			req.setAttribute("produit", produit);
-			req.getRequestDispatcher("jsp/DetailProduit.jsp").forward(req, resp);
+			Produit produit = dao.getProduitByIdent(Integer.parseInt(ident));
+			if(produit==null){
+				throw new Exception("Aucun produit ne correspond à l'identfiant '"+ident+"'");
+			}
+			dao.deleteProduit(produit);
+			dao.closeConnection();
+			//req.getRequestDispatcher("jsp/ListeProduits.jsp").forward(req, resp);
+			resp.sendRedirect("listeProduits");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,5 +44,5 @@ public class DetailProduitServlet extends HttpServlet {
 			req.getRequestDispatcher("jsp/Exception.jsp").forward(req, resp);
 		}
 	}
-
+	
 }

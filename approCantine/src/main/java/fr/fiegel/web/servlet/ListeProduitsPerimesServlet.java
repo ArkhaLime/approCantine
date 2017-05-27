@@ -31,8 +31,9 @@ public class ListeProduitsPerimesServlet extends HttpServlet {
 			if(tmp!=null) {
 				nbJours=Integer.parseInt(tmp.toString());
 			}
-			req.setAttribute("nbJours", String.valueOf(nbJours));
+			//req.setAttribute("nbJours", String.valueOf(nbJours));
 			ArrayList<Produit> produits = new ArrayList<Produit>( dao.rechercherProduitPerimes(true, nbJours));
+			dao.closeConnection();
 			req.setAttribute("produits", produits);
 			req.setAttribute("showPerime", true);
 			req.setAttribute("titre", "Liste des produits proches de la péremption");

@@ -10,8 +10,16 @@
   <jsp:include page="./includes/Navbar.jsp"></jsp:include>
   <div class="container body-content">
 	<h1><c:out value="${titre }" default="Liste des produits"/></h1>
-	<c:if test="${!showRupture && ! showPerime}">
+	<c:if test="${!showRupture && ! showPerime && !recherche}">
 		<a href="detail" class="btn btn-primary">Ajouter un produit</a>
+		<c:if test="${!empty valorisation }">
+			<br/><br/>
+			<p>Valorisation totale du stock: <c:out value="${valorisation.valeurTotale }"/>€<br/>
+			Valorisation du stock périmé: <c:out value="${valorisation.valeurPerime }"/>€</p>
+		</c:if>
+	</c:if>
+	<c:if test="${!showRupture && ! showPerime}">
+		<jsp:include page="./includes/FormRecherche.jsp"></jsp:include>
 	</c:if>
 	<c:if test="${showRupture }">
 		<jsp:include page="./includes/FormRupture.jsp"></jsp:include>

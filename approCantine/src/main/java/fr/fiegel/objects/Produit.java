@@ -15,7 +15,7 @@ public class Produit {
 	protected double prix_achat;
 	protected int min_rupture=1;
 	protected LocalDate date_peremption;
-	protected int quantite;
+	protected int quantite=1;
 	
 	protected static final int COEF_RUPTURE=2;
 

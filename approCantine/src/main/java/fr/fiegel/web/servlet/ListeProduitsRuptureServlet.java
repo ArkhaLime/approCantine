@@ -30,8 +30,9 @@ public class ListeProduitsRuptureServlet extends HttpServlet {
 			if(tmp!=null) {
 				coef=Integer.parseInt(tmp.toString());
 			}
-			req.setAttribute("coef", String.valueOf(coef));
+			//req.setAttribute("coef", String.valueOf(coef));
 			ArrayList<Produit> produits = new ArrayList<Produit>( dao.rechercherProduitRupture(true, coef));
+			dao.closeConnection();
 			req.setAttribute("produits", produits);
 			req.setAttribute("showRupture", true);
 			req.setAttribute("titre", "Liste des produits proches de la rupture");

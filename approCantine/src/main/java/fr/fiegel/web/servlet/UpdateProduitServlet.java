@@ -35,6 +35,7 @@ public class UpdateProduitServlet extends HttpServlet {
 			Produit produit = new Produit();
 			boolean erreur = false;
 			
+			//récupération des champs et traitements
 			int ident = Integer.parseInt(req.getParameter("ident").toString());
 			produit.setIdent(ident);
 			String libelle = req.getParameter("libelle").toString();
@@ -58,7 +59,15 @@ public class UpdateProduitServlet extends HttpServlet {
 				produit.setMinRupture(minRupture);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
-				req.setAttribute("min_rupture_erreur", "Le minimum avant rupture doit être un nombre");
+				req.setAttribute("min_rupture_erreur", "Le minimum avant rupture doit être un nombre >= 1");
+				erreur=true;
+			}
+			try {
+				int quantite = Integer.parseInt(req.getParameter("quantite").toString());
+				produit.setMinRupture(quantite);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				req.setAttribute("quantite_erreur", "Le quantité doit être un nombre >= 1");
 				erreur=true;
 			}
 			LocalDate datePeremption = CalUtils.fromDMYString(req.getParameter("date_peremption").toString());
@@ -68,11 +77,14 @@ public class UpdateProduitServlet extends HttpServlet {
 				req.getRequestDispatcher("jsp/DetailProduit.jsp").forward(req, resp);
 				return;
 			}
+			
+			//insertion ou maj selon présence dans BDD
 			if(produitInBdd==null){
 				dao.insertProduit(produit);
 			}else{
 				dao.updateProduit(produit);
 			}
+			dao.closeConnection();
 			resp.sendRedirect("listeProduits");
 		} catch (Exception e) {
 			e.printStackTrace();
