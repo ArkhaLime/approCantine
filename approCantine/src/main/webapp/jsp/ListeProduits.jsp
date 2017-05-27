@@ -9,13 +9,30 @@
   <body>
   <jsp:include page="./includes/Navbar.jsp"></jsp:include>
   <div class="container body-content">
-	<h1>Liste des produits</h1>
+	<h1><c:out value="${titre }" default="Liste des produits"/></h1>
+	<c:if test="${!showRupture && ! showPerime}">
+		<a href="detail" class="btn btn-primary">Ajouter un produit</a>
+	</c:if>
+	<c:if test="${showRupture }">
+		<jsp:include page="./includes/FormRupture.jsp"></jsp:include>
+	</c:if>
+	<c:if test="${showPerime }">
+		<jsp:include page="./includes/FormPerime.jsp"></jsp:include>
+	</c:if>
 	<div class="row">
 		<c:forEach items="${produits}" var="produit">
-			<div class="col-xs-6 col-sm-6 col-md-4 fiche-produit">
+			<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 fiche-produit">
 				<img src="images/default.jpg" class="center-block img-produit" alt="<c:out value='${produit.libelle}'/>" />
 				<p class="block barcode text-center margin-top-10px" style="font-size:4em;" ><c:out value="${produit.reference }"></c:out></p>
 				<p class="text-center" ><c:out value="${produit.libelle}"/><br/>(<c:out value="${produit.conditionnement}"/>)</p>
+				<p class="text-center <c:if test='${produit.perime }'>bg-red</c:if> ">
+					Date de péremption: <c:out value="${produit.frDatePeremption }"/> <br/>
+					Interval avant péremption: <c:out value="${produit.intervalAvantPeremption }"/>
+				</p>
+				<p class="text-center <c:if test='${produit.rupture }'>bg-red</c:if> <c:if test='${produit.bientotRupture }'>bg-orange</c:if>">
+					Quantité en stock: <c:out value="${produit.quantite }"/><br/>
+					Rupture à partir de <c:out value="${produit.minRupture }"/>
+				</p>
 				<form action="detail" method="get">
 					<input type="hidden" name="ident" value="<c:out value='${produit.ident }'/>" />
 					<button class="btn btn-primary center-block" type="submit" >Voir détails</button>

@@ -1,6 +1,8 @@
 package fr.fiegel.web.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import fr.fiegel.dao.ProduitDAO;
 import fr.fiegel.objects.Produit;
-import fr.fiegel.utils.StrUtils;
 import fr.fiegel.utils.Utils;
 
-@SuppressWarnings("serial")
-public class DetailProduitServlet extends HttpServlet {
+public class ListeProduitsRuptureServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,32 +24,24 @@ public class DetailProduitServlet extends HttpServlet {
 				resp.sendRedirect("login");
 				return;
 			}
-			
-			String ident = req.getParameter("ident");
-			Produit produit=null;
-			if(!StrUtils.isNullOrEmpty(ident)){
-				ProduitDAO dao = new ProduitDAO();
-				produit = dao.getProduitByIdent(Integer.parseInt(ident));
-			}else{
-				produit = new Produit();
+			ProduitDAO dao = new ProduitDAO();
+			int coef=2;
+			Object tmp = req.getParameter("coef");
+			if(tmp!=null) {
+				coef=Integer.parseInt(tmp.toString());
 			}
+			req.setAttribute("coef", String.valueOf(coef));
+			ArrayList<Produit> produits = new ArrayList<Produit>( dao.rechercherProduitRupture(true, coef));
+			req.setAttribute("produits", produits);
+			req.setAttribute("showRupture", true);
+			req.setAttribute("titre", "Liste des produits proches de la rupture");
+			req.getRequestDispatcher("jsp/ListeProduits.jsp").forward(req, resp);
 			
-			/*if(produit==null){
-				resp.sendRedirect("listeProduit");
-				return;
-			}*/
-			req.setAttribute("produit", produit);
-			req.getRequestDispatcher("jsp/DetailProduit.jsp").forward(req, resp);
-			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			req.setAttribute("exception", e);
 			req.getRequestDispatcher("jsp/Exception.jsp").forward(req, resp);
 		}
 	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
-	}
+	
 }

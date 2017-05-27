@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 				return;
 			}
 			req.getSession().setAttribute("userCo", user);
-			req.getRequestDispatcher("listeProduit").forward(req, resp);
+			resp.sendRedirect("listeProduits");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			req.setAttribute("exception", e);

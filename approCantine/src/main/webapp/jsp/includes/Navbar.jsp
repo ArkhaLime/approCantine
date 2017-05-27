@@ -4,9 +4,9 @@
 
 <c:set var="ProjectName">Appro Cantine (Fiegel)</c:set>
 
-<c:if test="${empty sessionScope.userCo}" var="connecte"></c:if>
+<c:if test="${!empty sessionScope.userCo}" var="connecte"></c:if>
 
-<c:if test="${connecte == false}">
+<c:if test="${connecte == true}">
 	<nav id="js-navbar" class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -17,13 +17,13 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><c:out value="${ProjectName}"></c:out></a>
+				<a class="navbar-brand" href="listeProduits"><c:out value="${ProjectName}"></c:out></a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="listeProduits">Produits</a></li>
+					<li><a href="listePerimes">Produits proche péremption</a></li>
+					<li><a href="listeRuptures">Produit proche rupture</a></li>
 				</ul>
 				<%-- <ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Bonjour, <c:out value="${userCo.identite}"></c:out></a></li>
@@ -49,7 +49,7 @@
 		</div>
 	</nav>
 </c:if>
-<c:if test="${connecte == true }">
+<c:if test="${connecte == false }">
 	<nav id="js-navbar" class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">

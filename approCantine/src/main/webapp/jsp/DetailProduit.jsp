@@ -12,43 +12,45 @@
 	  	<div class="container body-content">
 		<h1>Détail d'un produit</h1>
 		<p class="text-info">Les champs avec un astérique (*) sont obligatoires</p>
-		<form class="form-horizontal" action="" method="post">
+		<form class="form-horizontal" action="update" method="post">
 			<input type="hidden"  id="ident" name="ident" value="<c:out value='${produit.ident }' default='-1'/>" required >
 		  	
 		  	<div class="form-group">
 			    <label for="libelle" class="col-sm-2 control-label">Libellé *</label>
 			    <div class="col-sm-10">
-			      	<input type="text" class="form-control" id="libelle" name="libelle" placeholder="Libellé" value="<c:out value='${produit.libelle }' default=''/>" required >
+			      	<input type="text" class="form-control" id="libelle" name="libelle" placeholder="Libellé" value="<c:out value='${produit.libelle }' default=''/>" required maxlength="100">
 			    </div>
 		  	</div>
 		  	<div class="form-group">
 			    <label for="marque" class="col-sm-2 control-label">Marque *</label>
 			    <div class="col-sm-10">
-			      	<input type="text" class="form-control" id="marque" name="marque" placeholder="Marque" value="<c:out value='${produit.marque }' default=''/>" required>
+			      	<input type="text" class="form-control" id="marque" name="marque" placeholder="Marque" value="<c:out value='${produit.marque }' default=''/>" required maxlength="100">
 			    </div>
 		  	</div>
 		  	<div class="form-group">
 			    <label for="conditionnement" class="col-sm-2 control-label">Conditionnement</label>
 			    <div class="col-sm-10">
-			      	<input type="text" class="form-control" id="conditionnement" name="conditionnement" placeholder="Conditionnement" value="<c:out value='${produit.conditionnement }' default=''/>" >
+			      	<input type="text" class="form-control" id="conditionnement" name="conditionnement" placeholder="Conditionnement" value="<c:out value='${produit.conditionnement }' default=''/>" maxlength="50" >
 			    </div>
 		  	</div>
 		  	<div class="form-group">
 			    <label for="reference" class="col-sm-2 control-label">Référence *</label>
 			    <div class="col-sm-10">
-			      	<input type="text" class="form-control" id="reference" name="reference" placeholder="Référence" value="<c:out value='${produit.reference }' default=''/>" required>
+			      	<input type="text" class="form-control" id="reference" name="reference" placeholder="Référence" value="<c:out value='${produit.reference }' default=''/>" required maxlength="13">
 			    </div>
 		  	</div>
 		  	<div class="form-group">
 			    <label for="prix_achat" class="col-sm-2 control-label">Prix d'achat *</label>
 			    <div class="col-sm-10">
-			      	<input type="text" class="form-control" id="pris_achat" name="prix_achat" placeholder="Prix d'achat" value="<c:out value='${produit.prixAchat }' default=''/>" required>
+			      	<input type="text" class="form-control" id="prix_achat" name="prix_achat" placeholder="Prix d'achat" value="<c:out value='${produit.prixAchat }' default=''/>" required>
+			    	<span id="helpBlock" class="help-block"><c:out value="${prix_achat_erreur }"/></span>
 			    </div>
 		  	</div>
 		  	<div class="form-group">
 			    <label for="min_rupture" class="col-sm-2 control-label">Min avant rupture *</label>
 			    <div class="col-sm-10">
-			      	<input type="number" min="1" class="form-control" id="min_rupture" name="min_rupture" placeholder="Min rupture" value="<c:out value='${produit.minRupture }' default=''/>" required>
+			      	<input type="number" min="1" class="form-control" id="min_rupture" name="min_rupture" placeholder="Min rupture" value="<c:out value='${produit.minRupture }' default='2'/>" required>
+			    	<span id="helpBlock" class="help-block"><c:out value="${min_rupture_erreur }"/></span>
 			    </div>
 		  	</div>
 		  	<div class="form-group">
@@ -63,6 +65,7 @@
 			    </div>
 		  	</div>
 		</form>
+		<a href="listeProduits" class="btn btn-primary" title="Retour à la liste des produits">Retour à la liste</a>
 	  	</div>
 	    <jsp:include page="./includes/Scripts.jsp"></jsp:include>
 	    <script src="script/bootstrap-datepicker.min.js"></script>

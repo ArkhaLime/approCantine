@@ -14,6 +14,7 @@
 		Voici l'erreur: <strong><c:out value="${exception.message}"></c:out></strong>.<br/>
 		Veuillez contacter l'administrateur de ce site.
 	</p>
+	<c:out value="${exception}" default="Vide"></c:out>
   </div>
     <jsp:include page="./includes/Scripts.jsp"></jsp:include>
   </body>

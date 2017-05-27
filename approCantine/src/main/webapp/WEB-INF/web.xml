@@ -26,8 +26,23 @@
 	</servlet>
 	
 	<servlet>
+		<servlet-name>ListeProduitsPerimesServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.ListeProduitsPerimesServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ListeProduitsRuptureServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.ListeProduitsRuptureServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>DetailProduitServlet</servlet-name>
 		<servlet-class>fr.fiegel.web.servlet.DetailProduitServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>UpdateProduitServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.UpdateProduitServlet</servlet-class>
 	</servlet>
 	
 	
@@ -43,12 +58,27 @@
 	
 	<servlet-mapping>
 		<servlet-name>ListeProduitsServlet</servlet-name>
-		<url-pattern>/listeProduit</url-pattern>
+		<url-pattern>/listeProduits</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ListeProduitsPerimesServlet</servlet-name>
+		<url-pattern>/listePerimes</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ListeProduitsRuptureServlet</servlet-name>
+		<url-pattern>/listeRuptures</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>DetailProduitServlet</servlet-name>
 		<url-pattern>/detail</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>UpdateProduitServlet</servlet-name>
+		<url-pattern>/update</url-pattern>
 	</servlet-mapping>
 
 </web-app>

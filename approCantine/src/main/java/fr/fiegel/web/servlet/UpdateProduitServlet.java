@@ -1,6 +1,7 @@
 package fr.fiegel.web.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.fiegel.dao.ProduitDAO;
 import fr.fiegel.objects.Produit;
+import fr.fiegel.utils.CalUtils;
 import fr.fiegel.utils.Utils;
 
 @SuppressWarnings("serial")
@@ -29,14 +31,49 @@ public class UpdateProduitServlet extends HttpServlet {
 				return;
 			}
 			ProduitDAO dao = new ProduitDAO();
-			Produit produitInBdd = dao.getProduitByIdent(Integer.parseInt(req.getAttribute("ident").toString()));
+			Produit produitInBdd = dao.getProduitByIdent(Integer.parseInt(req.getParameter("ident").toString()));
 			Produit produit = new Produit();
-			//TODO: remplir les champs de produit
+			boolean erreur = false;
+			
+			int ident = Integer.parseInt(req.getParameter("ident").toString());
+			produit.setIdent(ident);
+			String libelle = req.getParameter("libelle").toString();
+			produit.setLibelle(libelle);
+			String marque = req.getParameter("marque").toString();
+			produit.setMarque(marque);
+			String conditionnement = req.getParameter("conditionnement").toString();
+			produit.setConditionnement(conditionnement);
+			String reference = req.getParameter("reference").toString();
+			produit.setReference(reference);
+			try {
+				double prixAchat = Double.parseDouble(req.getParameter("prix_achat").toString());
+				produit.setPrixAchat(prixAchat);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				req.setAttribute("prix_achat_erreur", "Le prix d'achat doit être au format 0.00");
+				erreur=true;
+			}
+			try {
+				int minRupture = Integer.parseInt(req.getParameter("min_rupture").toString());
+				produit.setMinRupture(minRupture);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				req.setAttribute("min_rupture_erreur", "Le minimum avant rupture doit être un nombre");
+				erreur=true;
+			}
+			LocalDate datePeremption = CalUtils.fromDMYString(req.getParameter("date_peremption").toString());
+			produit.setDatePeremption(datePeremption);
+			if(erreur){
+				req.setAttribute("produit", produit);
+				req.getRequestDispatcher("jsp/DetailProduit.jsp").forward(req, resp);
+				return;
+			}
 			if(produitInBdd==null){
 				dao.insertProduit(produit);
 			}else{
 				dao.updateProduit(produit);
-			}		
+			}
+			resp.sendRedirect("listeProduits");
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("exception", e);

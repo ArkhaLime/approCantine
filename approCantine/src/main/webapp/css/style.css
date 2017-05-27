@@ -72,3 +72,11 @@ textarea {
 .margin-top-10px{
 	margin-top: 10px;
 }
+
+.bg-red{
+	background-color: #ffafaf;
+}
+
+.bg-orange{
+	background-color: #ffec89;
+}
