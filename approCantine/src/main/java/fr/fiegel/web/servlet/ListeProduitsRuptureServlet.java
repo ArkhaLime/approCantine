@@ -14,6 +14,7 @@ import fr.fiegel.dao.ProduitDAO;
 import fr.fiegel.objects.Produit;
 import fr.fiegel.utils.Utils;
 
+@SuppressWarnings("serial")
 public class ListeProduitsRuptureServlet extends HttpServlet {
 
 	@Override

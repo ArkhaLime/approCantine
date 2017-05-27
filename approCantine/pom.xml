@@ -4,7 +4,8 @@
 
 	<groupId>fr.fiegel</groupId>
 	<artifactId>approCantine</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<!-- <version>0.0.3-SNAPSHOT</version> -->
+	<version>1.0.0-RELEASE</version>
 	<packaging>war</packaging>
 
 	<properties>
@@ -51,7 +52,7 @@
 				<version>${jax.rs.api.version}</version>
 			</dependency>
 
-			<dependency>
+			<!-- <dependency>
 				<groupId>org.glassfish.jersey.containers</groupId>
 				<artifactId>jersey-container-servlet-core</artifactId>
 				<version>${jersey.version}</version>
@@ -61,7 +62,7 @@
 				<groupId>org.glassfish.jersey.media</groupId>
 				<artifactId>jersey-media-json-jackson</artifactId>
 				<version>${jersey.version}</version>
-			</dependency>
+			</dependency> -->
 
 			<!-- <dependency> <groupId>org.glassfish.jersey.test-framework.providers</groupId> 
 				<artifactId>jersey-test-framework-provider-jetty</artifactId> <version>${jersey.version}</version> 
@@ -122,7 +123,7 @@
 			<artifactId>javax.ws.rs-api</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet-core</artifactId>
 			<scope>runtime</scope>
@@ -132,7 +133,7 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- <dependency> <groupId>org.glassfish.jersey.test-framework.providers</groupId> 
 			<artifactId>jersey-test-framework-provider-jetty</artifactId> <scope>test</scope> 
