@@ -6,7 +6,8 @@ import java.sql.SQLException;
 
 public class MysqlDbConnection implements DbConnection {
 
-  private static final String JDBC_URL = "jdbc:mysql://localhost:3306/fiegel_jee_appro_cantine?serverTimezone=UTC&useUnicode=true";
+  private static final String JDBC_URL = "jdbc:mysql://localhost:3306/fiegel_jee_appro_cantine?serverTimezone=UTC";
+  // &useUnicode=true
   private static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
 
   static {

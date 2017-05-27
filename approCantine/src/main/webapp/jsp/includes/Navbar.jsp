@@ -21,9 +21,27 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="listeProduits">Produits</a></li>
+					<!-- <li><a href="listeProduits">Produits</a></li>
 					<li><a href="listePerimes">Produits proche péremption</a></li>
-					<li><a href="listeRuptures">Produit proche rupture</a></li>
+					<li><a href="listeRuptures">Produit proche rupture</a></li> -->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produits <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="listeProduits">Tous les produits</a></li>
+							<li><a href="listePerimes">Produits proche péremption</a></li>
+							<li><a href="listeRuptures">Produit proche rupture</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="detail">Nouveau produit</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menus <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="listeMenus">Tous les menus</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="creationMenu">Nouveau menu</a></li>
+						</ul>
+					</li>
 				</ul>
 				<%-- <ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Bonjour, <c:out value="${userCo.identite}"></c:out></a></li>

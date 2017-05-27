@@ -64,7 +64,7 @@ public class UpdateProduitServlet extends HttpServlet {
 			}
 			try {
 				int quantite = Integer.parseInt(req.getParameter("quantite").toString());
-				produit.setMinRupture(quantite);
+				produit.setQuantite(quantite);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 				req.setAttribute("quantite_erreur", "Le quantité doit être un nombre >= 1");

@@ -14,8 +14,14 @@
 		<a href="detail" class="btn btn-primary">Ajouter un produit</a>
 		<c:if test="${!empty valorisation }">
 			<br/><br/>
-			<p>Valorisation totale du stock: <c:out value="${valorisation.valeurTotale }"/>€<br/>
-			Valorisation du stock périmé: <c:out value="${valorisation.valeurPerime }"/>€</p>
+			<p>Valorisation totale du stock: 
+				<strong class="<c:if test="${valorisation.valeurTotale>0 }">text-success</c:if> <c:if test="${valorisation.valeurTotale<=0 }">text-danger</c:if>" >
+					<c:out value="${valorisation.valeurTotale }"/>€
+				</strong><br/>
+			Valorisation du stock périmé: 
+				<strong class="<c:if test="${valorisation.valeurPerime>0 }">text-danger</c:if> <c:if test="${valorisation.valeurPerime<=0 }">text-success</c:if>" >
+					<c:out value="${valorisation.valeurPerime }"/>€
+				</strong></p>
 		</c:if>
 	</c:if>
 	<c:if test="${!showRupture && ! showPerime}">
@@ -32,8 +38,12 @@
 			<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 fiche-produit">
 				<img src="images/default.jpg" class="center-block img-produit" alt="<c:out value='${produit.libelle}'/>" />
 				<p class="block barcode text-center margin-top-10px" style="font-size:4em;" ><c:out value="${produit.reference }"></c:out></p>
-				<p class="text-center" ><c:out value="${produit.libelle}"/><br/>(<c:out value="${produit.conditionnement}"/>)</p>
-				<p class="text-center <c:if test='${produit.perime }'>bg-red</c:if> ">
+				<p class="text-center" >
+					<c:out value="${produit.libelle}"/><br/>
+					[<c:out value="${produit.conditionnement}"/>]<br/>
+					<c:out value="${produit.marque}"/>
+				</p>
+				<p class="text-center <c:if test='${produit.perime }'>bg-red</c:if> <c:if test='${produit.bientotPerime }'>bg-orange</c:if>">
 					Date de péremption: <c:out value="${produit.frDatePeremption }"/> <br/>
 					Interval avant péremption: <c:out value="${produit.intervalAvantPeremption }"/>
 				</p>
@@ -47,6 +57,11 @@
 				</form>
 			</div>
 		</c:forEach>
+		<c:if test="${empty produits }">	
+			<div class="alert alert-info" style="margin-top:2em;">
+				<p class="text-center">Désolé, mais votre recherche n'a retourné aucun résultat.<br/>Vérifiez la valeur que vous cherchez.</p>
+			</div>
+		</c:if>
 	</div>
   </div>
     <jsp:include page="./includes/Scripts.jsp"></jsp:include>

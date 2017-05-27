@@ -55,6 +55,27 @@
 		<servlet-class>fr.fiegel.web.servlet.RechercheProduitServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>ListeMenusServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.ListeMenusServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>DetailMenuServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.DetailMenuServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CreationMenuServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.CreationMenuServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>RechercheMenuServlet</servlet-name>
+		<servlet-class>fr.fiegel.web.servlet.RechercheMenuServlet</servlet-class>
+	</servlet>
+	
+	
 	
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -99,6 +120,26 @@
 	<servlet-mapping>
 		<servlet-name>RechercheProduitServlet</servlet-name>
 		<url-pattern>/recherche</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ListeMenusServlet</servlet-name>
+		<url-pattern>/listeMenus</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DetailMenuServlet</servlet-name>
+		<url-pattern>/detailMenu</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>CreationMenuServlet</servlet-name>
+		<url-pattern>/creationMenu</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RechercheMenuServlet</servlet-name>
+		<url-pattern>/rechercheMenu</url-pattern>
 	</servlet-mapping>
 
 </web-app>

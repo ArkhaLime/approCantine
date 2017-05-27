@@ -12,28 +12,31 @@ public class Produit {
 	protected String marque;
 	protected String conditionnement;
 	protected String reference;
-	protected double prix_achat;
-	protected int min_rupture=1;
+	protected double prix_achat=1.0;
+	protected int min_rupture = 1;
 	protected LocalDate date_peremption;
-	protected int quantite=1;
-	
-	protected static final int COEF_RUPTURE=2;
+	protected int quantite = 1;
+	protected boolean archive=false;
 
-	
-	public Produit(){
-		this.date_peremption=LocalDate.now();
+	protected static final int COEF_RUPTURE = 2;
+	protected static final int NB_JOURS_AVANT_PEREMPTION = 7;
+
+	public Produit() {
+		this.date_peremption = LocalDate.now();
 	}
-	
-	public Produit(int ident, String libelle, String marque, String conditionnement, String ref, double prix_achat, int rupture, LocalDate peremption,int quantite){
-		this.ident=ident;
-		this.libelle=libelle;
-		this.marque=marque;
-		this.conditionnement=conditionnement;
-		this.reference=ref;
-		this.prix_achat=prix_achat;
-		this.min_rupture=rupture;
-		this.date_peremption=peremption;
-		this.quantite=quantite;
+
+	public Produit(int ident, String libelle, String marque, String conditionnement, String ref, double prix_achat,
+			int rupture, LocalDate peremption, int quantite,boolean archive) {
+		this.ident = ident;
+		this.libelle = libelle;
+		this.marque = marque;
+		this.conditionnement = conditionnement;
+		this.reference = ref;
+		this.prix_achat = prix_achat;
+		this.min_rupture = rupture;
+		this.date_peremption = peremption;
+		this.quantite = quantite;
+		this.archive=archive;
 	}
 
 	public int getIdent() {
@@ -95,15 +98,15 @@ public class Produit {
 	public LocalDate getDatePeremption() {
 		return date_peremption;
 	}
-	
-	public String getFrDatePeremption(){
+
+	public String getFrDatePeremption() {
 		return CalUtils.toDMYString(this.date_peremption);
 	}
 
 	public void setDatePeremption(LocalDate date_peremption) {
 		this.date_peremption = date_peremption;
 	}
-	
+
 	public int getQuantite() {
 		return quantite;
 	}
@@ -112,32 +115,55 @@ public class Produit {
 		this.quantite = quantite;
 	}
 
-	//ne donne pas le nb de jours entre les deux dates mais juste le champ day de la période mais permet au moins de savoir si la date est dépassée ou non
-	public int getNbJoursAvantPeremption(){
-		Period interval = Period.between(LocalDate.now(), date_peremption);
-		return interval.getDays();
+	public boolean isArchive() {
+		return archive;
+	}
+
+	public void setArchive(boolean archive) {
+		this.archive = archive;
 	}
 	
-	public boolean isPerime(){
-		int comp=date_peremption.compareTo(LocalDate.now());
-		if(comp<0)return true;
+	// ne donne pas le nb de jours entre les deux dates mais juste le champ day
+	// de la période mais permet au moins de savoir si la date est dépassée ou
+	// non
+//	public int getNbJoursAvantPeremption() {
+//		Period interval = Period.between(LocalDate.now(), date_peremption);
+//		return interval.getDays();
+//	}
+
+	public boolean isPerime() {
+		int comp = date_peremption.compareTo(LocalDate.now());
+		if (comp < 0)
+			return true;
 		return false;
 	}
-	
-	public boolean isRupture(){
-		return (quantite<=min_rupture);
+
+	public boolean isBientotPerime() {
+		Period interval = Period.between(LocalDate.now(), date_peremption);
+		if (interval.getYears() == 0 && interval.getMonths() == 0 && interval.getDays() <= NB_JOURS_AVANT_PEREMPTION
+				&& interval.getDays() > 0) {
+			return true;
+		}
+		return false;
 	}
-	
-	public boolean isBientotRupture(){
-		return (quantite<=min_rupture*COEF_RUPTURE && quantite>min_rupture);
+
+	public boolean isRupture() {
+		return (quantite <= min_rupture);
 	}
-	
-	public String getIntervalAvantPeremption(){
-		Period interval = Period.between(LocalDate.now(), date_peremption); 
-		String res= "";
-		if(interval.getDays()!=0) res += interval.getDays()+"j ";
-		if(interval.getMonths()!=0) res+= interval.getMonths()+"m ";
-		if(interval.getYears()!=0) res += interval.getYears()+"a";
+
+	public boolean isBientotRupture() {
+		return (quantite <= min_rupture * COEF_RUPTURE && quantite > min_rupture);
+	}
+
+	public String getIntervalAvantPeremption() {
+		Period interval = Period.between(LocalDate.now(), date_peremption);
+		String res = "";
+		if (interval.getDays() != 0)
+			res += interval.getDays() + "j ";
+		if (interval.getMonths() != 0)
+			res += interval.getMonths() + "m ";
+		if (interval.getYears() != 0)
+			res += interval.getYears() + "a";
 		return res.trim();
 	}
 
@@ -147,7 +173,5 @@ public class Produit {
 				+ conditionnement + ", reference=" + reference + ", prix_achat=" + prix_achat + ", min_rupture="
 				+ min_rupture + ", date_peremption=" + date_peremption + "]";
 	}
-	
-	
-	
+
 }

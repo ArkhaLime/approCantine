@@ -10,8 +10,13 @@
   	<body>
 	  	<jsp:include page="./includes/Navbar.jsp"></jsp:include>
 	  	<div class="container body-content">
-			<h1>Détail d'un produit</h1>
-			<p class="text-info">Les champs avec un astérique (*) sont obligatoires</p>
+			<h1>Détail du produit</h1>
+			<c:if test="${!produit.archive }">
+				<p class="text-info">Les champs avec un astérique (*) sont obligatoires</p>
+			</c:if>
+			<c:if test="${produit.archive }">
+				<p class="alert alert-danger">Ce produit n'est plus disponible!</p>
+			</c:if>
 			<form class="form-horizontal" action="update" method="post">
 				<input type="hidden"  id="ident" name="ident" value="<c:out value='${produit.ident }' default='-1'/>" required >
 			  	
@@ -66,17 +71,19 @@
 				    	<span id="helpBlock" class="help-block"><c:out value="${min_rupture_erreur }"/></span>
 				    </div>
 			  	</div>
-			  	<div class="form-group">
-				    <div class="col-sm-offset-2 col-sm-10">
-				      	<button type="submit" class="btn btn-default">Enregistrer les modifications</button>
-				    </div>
-			  	</div>
+			  	<c:if test="${!produit.archive }">
+				  	<div class="form-group">
+					    <div class="col-sm-offset-2 col-sm-10">
+					      	<button type="submit" class="btn btn-default">Enregistrer les modifications</button>
+					    </div>
+				  	</div>
+			  	</c:if>
 			</form>
 			<div class="row">
 				<div class="col-xs-5 col-sm-4">
 					<a href="listeProduits" class="btn btn-primary" title="Retour à la liste des produits">Retour à la liste</a>
 				</div>
-				<c:if test="${produit.ident >= 1 }">
+				<c:if test="${produit.ident >= 1  && !produit.archive}">
 					<div class="col-xs-5 col-sm-5">
 						<form action="delete" method="post" id="formDelete">
 							<input type="hidden" name="ident" value="${produit.ident }">
