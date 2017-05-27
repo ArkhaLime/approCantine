@@ -5,7 +5,7 @@ Fait dans le cadre du cours sur JavaEE lors de ma formation en LP Génie Logicie
 
 ## Prérequis
 
-Avant de lancer l'application sur votre serveur (Tomcat ou autre), pensez à créer la base de données associée. Le script se trouve dans le dossier "approCantine/sql". Pensez également à modifier les identifiants et l'url pur accédez à la base de données dans la classe "MysqlDbConnection".
+Avant de lancer l'application sur votre serveur (Tomcat ou autre), pensez à créer la base de données associée. Le script se trouve dans le dossier "approCantine/sql". Pensez également à modifier les identifiants et l'URL pour accédez à la base de données dans la classe "MysqlDbConnection".
 
 ## Test de l'application
 
